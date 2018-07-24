@@ -7,8 +7,8 @@
 // standard C function prototypes are pulled from devkitpro header files
 
 // GameCube functions
+extern void ICInvalidateRange(void* start, uint32_t size);
 extern void OSReport(char*, ...);
-
 extern int64_t OSGetTime();
 
 // Animal Crossing functions
