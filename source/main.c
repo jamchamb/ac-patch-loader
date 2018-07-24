@@ -25,15 +25,22 @@ void load_patches(void *patch_data) {
         uint32_t flags = *(uint32_t*) patch_data;
         patch_data += sizeof(flags);
 
-        memcpy((void*) target_addr, patch_data, patch_size);
-        ICInvalidateRange((void*) target_addr, patch_size);
-
+        void *content = patch_data;
         patch_data += patch_size;
 
-        OSReport("patch #%u: %u bytes to %p", i, patch_size, target_addr);
+        OSReport("patch #%u: 0x%x bytes to %p", i, patch_size, target_addr);
 
-        if (flags == 1) {
-            OSReport("jump flag set");
+        // TODO better address range check
+        if (target_addr == 0) {
+            OSReport("invalid target %p", target_addr);
+            continue;
+        }
+
+        memcpy((void*) target_addr, content, patch_size);
+        ICInvalidateRange((void*) target_addr, patch_size);
+
+        if (flags & 1) {
+            OSReport("jump flag set; jumping to %p", target_addr);
             void (*jump_to)() = (void*) target_addr;
             jump_to();
         }
