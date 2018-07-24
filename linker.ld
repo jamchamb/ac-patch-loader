@@ -29,4 +29,6 @@ SECTIONS
         my_zelda_free = 0x8062D4CC;
         my_malloc_current = 0x806D4B98;
         nesinfo_data_start = 0x801F6C64;
+
+        ICInvalidateRange = 0x80079CAC;
 }

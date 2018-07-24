@@ -1,30 +1,20 @@
-# Animal Crossing debug printf with C
+# Animal Crossing Patch Loader
 
-This uses the built-in debug print functions to print to the screen.
-This version is implemented in C.
+This is a patch loader for Animal Crossing NES ROM files implemented in C.
 
-## Setup
+The big patch format is based on Cuyler36's assembly patch loader, with an additional
+integer at the beginning indicating the number of patches to load.
 
-`Debug_mode_output` is originally called at `80404E24`
+## Patch format
 
-- Rewrite this to call into hook code at `80002000`
-- Set debug print flag and line count, and fill text buffer
-- Continue call to `Debug_mode_output`
+The first 32-bit integer is the number of patches to load.
 
-## Printing text
+    [32bit n_patches]
 
-- OR `debug_print_flag` with 2 (bit 30 must be set for `Debug_Print2_output`)
-- Set `debug_print2_count` to number of lines to print
-- Text buffer pointer is in `debug_print2_buffer`
-  - Has `0xDC0` bytes of space
-  - Each entry is `0x2C` (44) bytes
-  - Fits a total of 80 entries
+For each patch, the format is:
 
-### Text line format
+    [32bit address] [32bit size] [32bit flags] [patch_bytes]
 
-The first three bytes define position and color:
-
-    [8bit column] [8bit row] [8bit color] [text...]
 
 ## Building
 
