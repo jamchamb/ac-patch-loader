@@ -3,11 +3,11 @@
 This is a patch loader for Animal Crossing NES ROM files implemented in C.
 
 The big patch format is based on Cuyler36's assembly patch loader, with an additional
-integer at the beginning indicating the number of patches to load.
+header at the beginning indicating global settings and the number of patches to load.
 
-## Patch format
+## Patch file format
 
-The first 32 bits contain global settings flags and the number of patches to load:
+The first 32 bits of the file contain global settings flags and the number of patches to load:
 
     [16bit flags] [16bit n_patches]
 
