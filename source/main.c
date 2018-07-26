@@ -30,8 +30,7 @@ void load_patches(void *patch_data) {
 
         OSReport("patch #%u: 0x%x bytes to %p", i, patch_size, target_addr);
 
-        // TODO better address range check
-        if (target_addr == 0) {
+        if (target_addr < 0x80000000 || target_addr + patch_size >= 0x81800000) {
             OSReport("invalid target %p", target_addr);
             continue;
         }
