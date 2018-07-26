@@ -10,12 +10,19 @@ extern void* my_zelda_malloc_align(unsigned long size, int align);
 extern void my_zelda_free(void *ptr);
 
 void load_patches(void *patch_data) {
-    uint32_t num_patches = *(uint32_t*) patch_data;
+    // flag bits reserved for future use
+    uint16_t global_flags = *(uint16_t*) patch_data;
+    patch_data += sizeof(global_flags);
+
+    OSReport("global flags: 0x%x",  global_flags);
+
+    // get number of patches to load
+    uint16_t num_patches = *(uint16_t*) patch_data;
     patch_data += sizeof(num_patches);
 
     OSReport("loading %u patches", num_patches);
 
-    for (uint32_t i = 0; i < num_patches; i++) {
+    for (uint16_t i = 0; i < num_patches; i++) {
         uint32_t target_addr = *(uint32_t*) patch_data;
         patch_data += sizeof(target_addr);
 

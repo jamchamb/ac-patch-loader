@@ -7,9 +7,9 @@ integer at the beginning indicating the number of patches to load.
 
 ## Patch format
 
-The first 32-bit integer is the number of patches to load.
+The first 32 bits contain global settings flags and the number of patches to load:
 
-    [32bit n_patches]
+    [16bit flags] [16bit n_patches]
 
 For each patch, the format is:
 
