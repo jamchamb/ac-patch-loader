@@ -23,6 +23,8 @@ SECTIONS
         OSGetTime = 0x8007F6F8;
         OSReport = 0x8005A750;
 
+        JUTReportConsole = 0x800771B0;
+
         Debug_mode_output = 0x8039816C;
 
         my_zelda_malloc_align = 0x8062D480;
