@@ -8,6 +8,7 @@
 
 // GameCube functions
 extern void ICInvalidateRange(void* start, uint32_t size);
+extern void DCInvalidateRange(void* start, uint32_t size);
 extern void OSReport(char*, ...);
 extern int64_t OSGetTime();
 

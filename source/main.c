@@ -36,7 +36,10 @@ void load_patches(void *patch_data) {
         }
 
         memcpy((void*) target_addr, content, patch_size);
+
+        // Invalidate both the Instruction & Data caches, just to be safe
         ICInvalidateRange((void*) target_addr, patch_size);
+        DCInvalidateRange((void*) target_addr, patch_size);
 
         if (flags & 1) {
             OSReport("jump flag set; jumping to %p", target_addr);

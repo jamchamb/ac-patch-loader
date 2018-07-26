@@ -31,4 +31,5 @@ SECTIONS
         nesinfo_data_start = 0x801F6C64;
 
         ICInvalidateRange = 0x80079CAC;
+        DCInvalidateRange = 0x80079B54;
 }
