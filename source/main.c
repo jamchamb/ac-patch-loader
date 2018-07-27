@@ -20,7 +20,7 @@ void load_patches(void *patch_data) {
     // check if enable JUTConsole flag is set, and enable it if so
     if (global_flags & 1) {
         OSReport("enabling JUTConsole without zurumode");
-        *(uint32_t*) (game_first_move + 0x18) = 0x60000000; // nop the branch if equal
+        *(uint32_t*) (game_first_move + 6 * sizeof(uint32_t)) = 0x60000000; // nop the branch if equal
     }
 
     // get number of patches to load
