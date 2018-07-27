@@ -8,7 +8,7 @@ extern void* nesinfo_data_start;
 extern void* my_malloc_current[2];
 extern void* my_zelda_malloc_align(unsigned long size, int align);
 extern void my_zelda_free(void *ptr);
-extern void* game_move_first;
+extern void* game_move_first(void *current_graph_process_data);
 
 void load_patches(void *patch_data) {
     // flag bits reserved for future use
