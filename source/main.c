@@ -22,6 +22,7 @@ void load_patches(void *patch_data) {
         OSReport("enabling JUTConsole without zurumode");
         *((uint32_t *)&game_move_first + 6) = 0x60000000; // nop the branch if equal
         ICInvalidateRange(game_move_first, 0x20);
+        JUTReportConsole("JUT Console is now enabled!");
     }
 
     // get number of patches to load
