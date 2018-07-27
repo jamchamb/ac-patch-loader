@@ -21,6 +21,7 @@ void load_patches(void *patch_data) {
     if (global_flags & 1) {
         OSReport("enabling JUTConsole without zurumode");
         *(uint32_t*) (game_first_move + 6 * sizeof(uint32_t)) = 0x60000000; // nop the branch if equal
+        ICInvalidateRange(game_first_move, 0x20);
     }
 
     // get number of patches to load
