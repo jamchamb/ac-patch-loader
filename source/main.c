@@ -8,7 +8,7 @@ extern void* nesinfo_data_start;
 extern void* my_malloc_current[2];
 extern void* my_zelda_malloc_align(unsigned long size, int align);
 extern void my_zelda_free(void *ptr);
-extern void* game_first_move;
+extern void* game_move_first;
 
 void load_patches(void *patch_data) {
     // flag bits reserved for future use
@@ -20,8 +20,8 @@ void load_patches(void *patch_data) {
     // check if enable JUTConsole flag is set, and enable it if so
     if (global_flags & 1) {
         OSReport("enabling JUTConsole without zurumode");
-        *(uint32_t*) (game_first_move + 6 * sizeof(uint32_t)) = 0x60000000; // nop the branch if equal
-        ICInvalidateRange(game_first_move, 0x20);
+        *((uint32_t *)&game_move_first + 6) = 0x60000000; // nop the branch if equal
+        ICInvalidateRange(game_move_first, 0x20);
     }
 
     // get number of patches to load

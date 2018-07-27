@@ -35,5 +35,5 @@ SECTIONS
         ICInvalidateRange = 0x80079CAC;
         DCInvalidateRange = 0x80079B54;
 
-        game_first_move = 0x80404C68;
+        game_move_first = 0x80404C68;
 }
